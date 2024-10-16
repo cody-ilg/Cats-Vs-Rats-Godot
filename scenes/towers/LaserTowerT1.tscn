@@ -98,7 +98,6 @@ offset = Vector2(0, -31.33)
 [node name="PointLight2D" type="PointLight2D" parent="Gun/Marker2D"]
 position = Vector2(41.78, 0)
 scale = Vector2(0.2, 0.2)
-enabled = false
 color = Color(1, 0, 0.0166664, 1)
 energy = 0.0
 texture = ExtResource("5_eexdw")
@@ -112,6 +111,7 @@ shape = SubResource("CircleShape2D_sk6ug")
 libraries = {
 "": SubResource("AnimationLibrary_uhfkk")
 }
+speed_scale = 1.674
 
 [connection signal="mouse_entered" from="InteractZone" to="." method="_on_interact_zone_mouse_entered"]
 [connection signal="mouse_exited" from="InteractZone" to="." method="_on_interact_zone_mouse_exited"]

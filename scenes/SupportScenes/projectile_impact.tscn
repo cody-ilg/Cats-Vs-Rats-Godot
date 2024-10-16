@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6hhm24rsskmk"]
+
+[ext_resource type="Texture2D" uid="uid://bx8bft0anbv4" path="res://assets/effects/impact_01-Sheet.png" id="1_nf5gq"]
+[ext_resource type="Script" path="res://scenes/SupportScenes/projectile_impact.gd" id="2_2qbv6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r704"]
+atlas = ExtResource("1_nf5gq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2ru2"]
+atlas = ExtResource("1_nf5gq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p85t"]
+atlas = ExtResource("1_nf5gq")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s631k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r704")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2ru2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p85t")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="ProjectileImpact" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_s631k")
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
+script = ExtResource("2_2qbv6")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

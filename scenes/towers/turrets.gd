@@ -27,7 +27,8 @@ func _ready():
 func _physics_process(_delta):
   if mob_arr.size() != 0 and built:
     select_mob()
-    turn()
+    if not get_node("AnimationPlayer").is_playing():
+      turn()
     if is_ready:
       fire()
   else:
