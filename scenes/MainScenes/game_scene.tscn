@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=3 uid="uid://cjwrr5wiyskbp"]
+
+[ext_resource type="Script" path="res://scenes/MainScenes/game_scene.gd" id="1_bv8us"]
+[ext_resource type="PackedScene" uid="uid://cg8wnxe0jry0o" path="res://scenes/levels/level_1.tscn" id="1_lplor"]
+[ext_resource type="Script" path="res://scenes/MainScenes/UI.gd" id="3_vi2jp"]
+[ext_resource type="Texture2D" uid="uid://ds34cvkkge6cf" path="res://assets/UI/buttons/button_tower.png" id="4_m7ckf"]
+[ext_resource type="Texture2D" uid="uid://bv3srdwgoq8ke" path="res://assets/towers/laser_pointer.png" id="4_vglek"]
+[ext_resource type="Texture2D" uid="uid://dpy0evmyn84ht" path="res://assets/UI/buttons/button_tower_pressed.png" id="5_ovdln"]
+[ext_resource type="Texture2D" uid="uid://jqu1bi3as4j3" path="res://assets/UI/buttons/button_forward.png" id="7_gyugb"]
+[ext_resource type="Texture2D" uid="uid://78eqd5gkv2t8" path="res://assets/UI/buttons/button_pause.png" id="8_0p2xm"]
+[ext_resource type="Texture2D" uid="uid://xusbq1cewed6" path="res://assets/UI/buttons/button_fast_forward.png" id="9_51wxp"]
+[ext_resource type="Texture2D" uid="uid://c3optj6txtien" path="res://assets/UI/buttons/button_fast_forward_pressed.png" id="10_sp8vd"]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_bv8us")
+
+[node name="Level1" parent="." instance=ExtResource("1_lplor")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_vi2jp")
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/HUD"]
+layout_mode = 2
+offset_left = 4.945
+offset_top = 459.25
+offset_right = 215.944
+offset_bottom = 767.405
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(111.455, 134)
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 20
+
+[node name="BuildBar" type="VBoxContainer" parent="UI/HUD/MarginContainer2"]
+custom_minimum_size = Vector2(80, 258.155)
+layout_mode = 2
+theme_override_constants/separation = 45
+
+[node name="LaserTower" type="TextureButton" parent="UI/HUD/MarginContainer2/BuildBar" groups=["build_buttons"]]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+tooltip_text = "Place a laser turret."
+texture_normal = ExtResource("4_m7ckf")
+texture_pressed = ExtResource("5_ovdln")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/MarginContainer2/BuildBar/LaserTower"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.915
+offset_top = -57.79
+offset_right = 69.0851
+offset_bottom = 62.21
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(1.875, 43.75)
+texture = ExtResource("4_vglek")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1265.0
+offset_top = -90.0
+offset_right = -1096.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 20
+
+[node name="GameControls" type="HBoxContainer" parent="UI/HUD/MarginContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PausePlay" type="TextureButton" parent="UI/HUD/MarginContainer/GameControls"]
+process_mode = 3
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("7_gyugb")
+texture_pressed = ExtResource("8_0p2xm")
+
+[node name="FastForward" type="TextureButton" parent="UI/HUD/MarginContainer/GameControls"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("9_51wxp")
+texture_pressed = ExtResource("10_sp8vd")
+
+[connection signal="pressed" from="UI/HUD/MarginContainer/GameControls/PausePlay" to="UI" method="_on_pause_play_pressed"]
+[connection signal="pressed" from="UI/HUD/MarginContainer/GameControls/FastForward" to="UI" method="_on_fast_forward_pressed"]

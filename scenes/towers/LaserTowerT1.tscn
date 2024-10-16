@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://cypefcl8r0h2n"]
+
+[ext_resource type="Script" path="res://scenes/towers/LaserTowerT1.gd" id="1_b77wc"]
+[ext_resource type="Texture2D" uid="uid://bfqgamfi8yue" path="res://assets/towers/tower_base.png" id="2_jyjtp"]
+[ext_resource type="Texture2D" uid="uid://bv3srdwgoq8ke" path="res://assets/towers/laser_pointer.png" id="3_a77j8"]
+[ext_resource type="Texture2D" uid="uid://bd6ff432s858y" path="res://assets/towers/laser_muzzle_flash.png" id="4_iy0jt"]
+[ext_resource type="Texture2D" uid="uid://c4q5nedc5khb7" path="res://assets/towers/circle.png" id="5_eexdw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34075"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sk6ug"]
+
+[sub_resource type="Animation" id="Animation_7na0h"]
+resource_name = "fire"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun/Marker2D/Flash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gun/Marker2D/Flash:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(1, 1), Vector2(0.3, 0.3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gun/Marker2D/PointLight2D:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Gun/Marker2D/PointLight2D:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 2.73, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhfkk"]
+_data = {
+"fire": SubResource("Animation_7na0h")
+}
+
+[node name="LaserTowerT1" type="Node2D"]
+script = ExtResource("1_b77wc")
+
+[node name="InteractZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractZone"]
+shape = SubResource("CircleShape2D_34075")
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("2_jyjtp")
+
+[node name="Gun" type="Sprite2D" parent="."]
+texture = ExtResource("3_a77j8")
+offset = Vector2(2.57, 0)
+
+[node name="Marker2D" type="Marker2D" parent="Gun"]
+
+[node name="Flash" type="Sprite2D" parent="Gun/Marker2D"]
+visible = false
+modulate = Color(1, 0.18, 0.18, 0.847059)
+position = Vector2(36.14, 0)
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_iy0jt")
+offset = Vector2(0, -31.33)
+
+[node name="PointLight2D" type="PointLight2D" parent="Gun/Marker2D"]
+position = Vector2(41.78, 0)
+scale = Vector2(0.2, 0.2)
+enabled = false
+color = Color(1, 0, 0.0166664, 1)
+energy = 0.0
+texture = ExtResource("5_eexdw")
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_sk6ug")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uhfkk")
+}
+
+[connection signal="mouse_entered" from="InteractZone" to="." method="_on_interact_zone_mouse_entered"]
+[connection signal="mouse_exited" from="InteractZone" to="." method="_on_interact_zone_mouse_exited"]
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
