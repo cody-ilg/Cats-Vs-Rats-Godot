@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@onready var hp_bar = get_node("HUD/InfoBar/MarginContainer/HBoxContainer/HPBar")
 
 
 func set_tower_preview(tower_type, mouse_position):
@@ -49,3 +50,9 @@ func _on_fast_forward_pressed():
     Engine.set_time_scale(1.0)
   else:
     Engine.set_time_scale(2.0)
+
+## Health bar
+
+func update_health_bar(player_health):
+  var hp_bar_tween = hp_bar.create_tween()
+  hp_bar_tween.tween_property(hp_bar, "value", player_health, 0.1)
