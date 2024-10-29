@@ -1,7 +1,10 @@
 extends PathFollow2D
 
+signal reached_end(damage)
+
 @export var speed: int = 150
 @export var hp: int = 50
+@export var player_damage: int = 1
 
 @onready var health_bar = get_node("HealthBar")
 @onready var impact_area = get_node("ImpactPos")
@@ -15,6 +18,9 @@ func _ready():
 
 
 func _process(delta):
+  if progress == 1.0:
+    emit_signal("reached_end", player_damage)
+    queue_free()
   move(delta)
 
 func move(delta):
