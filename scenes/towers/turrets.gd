@@ -12,14 +12,7 @@ var range_texture: Sprite2D
 func _ready():
   if built:
     self.get_node("Range/CollisionShape2D").get_shape().radius = 0.5 * GameData.tower_data[type]["range"]
-    # range_texture = Sprite2D.new()
-    # range_texture.position = Vector2(0, 0)
-    # var scaling = GameData.tower_data[type]["range"] / 445
-    # range_texture.scale = Vector2(scaling, scaling)
-    # var texture = load("res://assets/towers/range_01.png")
-    # range_texture.texture = texture
-    # range_texture.visible = false
-  
+
 
 
 
@@ -76,11 +69,5 @@ func _on_range_body_entered(body:Node2D):
 
 ##MOUSE INTERACTION
 
-# func _on_interact_zone_mouse_exited():
-#   range_texture.visible = false
-
-
-# func _on_interact_zone_mouse_entered():
-#   range_texture.visible = true
 
 

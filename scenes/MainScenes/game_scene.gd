@@ -1,5 +1,6 @@
 extends Node2D
 
+signal game_over(result)
 
 var map_node
 
@@ -8,8 +9,11 @@ var build_valid: bool = false
 var build_tile
 var build_location
 var build_type
+
 var current_wave: int = 0
 var mobs_in_wave: int = 0
+
+var player_health: int = 100
 
 func _ready():
   map_node = get_node("Level1") #turn this into var based on selected map
@@ -86,6 +90,17 @@ func retrieve_wave_data():
 func spawn_mobs(wave_data):
   for i in wave_data:
     var new_mob = load("res://scenes/mobs/" + i[0] + ".tscn").instantiate()
+    # new_mob.connect("reached_end", self, "on_player_damage")
     map_node.get_node("MobPath").add_child(new_mob, true)
     await(get_tree().create_timer(i[1]).timeout)
 
+## Damage Functions
+
+func on_player_damage(damage):
+  player_health -= damage
+  if player_health <= 0:
+    print("game over")
+    # emit_signal("game_over", false)
+  else:
+    get_node("UI/HUD/InfoBar/MarginContainer/HBoxContainer/HPBar").update_health_bar(player_health)
+    print(player_health)

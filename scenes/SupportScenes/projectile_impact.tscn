@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6hhm24rsskmk"]
 
 [ext_resource type="Texture2D" uid="uid://bx8bft0anbv4" path="res://assets/effects/impact_01-Sheet.png" id="1_nf5gq"]
-[ext_resource type="Script" path="res://scenes/SupportScenes/projectile_impact.gd" id="2_2qbv6"]
+[ext_resource type="Script" uid="uid://cydhnx74cl38g" path="res://scenes/SupportScenes/projectile_impact.gd" id="2_2qbv6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2r704"]
 atlas = ExtResource("1_nf5gq")
