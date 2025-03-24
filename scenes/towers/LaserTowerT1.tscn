@@ -109,7 +109,7 @@ shape = SubResource("CircleShape2D_sk6ug")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_uhfkk")
+&"": SubResource("AnimationLibrary_uhfkk")
 }
 speed_scale = 1.674
 
