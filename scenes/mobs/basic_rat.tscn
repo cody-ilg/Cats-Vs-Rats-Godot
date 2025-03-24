@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cboaswjv7donl"]
 
-[ext_resource type="Script" path="res://scenes/mobs/basic_rat.gd" id="1_v4k0f"]
+[ext_resource type="Script" uid="uid://sn6pcvvwnh50" path="res://scenes/mobs/basic_rat.gd" id="1_v4k0f"]
 [ext_resource type="Texture2D" uid="uid://1f84vb0gdiro" path="res://assets/mobs/rat_02-Sheet.png" id="2_kl1wj"]
 [ext_resource type="Texture2D" uid="uid://dphkrem5bivsr" path="res://assets/mobs/rat_02_shadow.png" id="2_pwtob"]
 [ext_resource type="Texture2D" uid="uid://fxpc0xo40vne" path="res://assets/mobs/rat_hp_bar.png" id="4_4xlkb"]
@@ -77,8 +77,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_20rcj"]
 _data = {
-"hit": SubResource("Animation_egmhg"),
-"move": SubResource("Animation_0n8fa")
+&"hit": SubResource("Animation_egmhg"),
+&"move": SubResource("Animation_0n8fa")
 }
 
 [node name="BasicRat" type="PathFollow2D"]

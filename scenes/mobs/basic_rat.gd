@@ -1,6 +1,6 @@
 extends PathFollow2D
 
-signal reached_end(damage)
+# signal reached_end(damage)
 
 @export var speed: int = 150
 @export var hp: int = 50
@@ -19,7 +19,7 @@ func _ready():
 
 func _process(delta):
   if progress == 1.0:
-    emit_signal("reached_end", player_damage)
+    # emit_signal("reached_end", player_damage)
     queue_free()
   move(delta)
 
