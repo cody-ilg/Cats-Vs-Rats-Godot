@@ -48,7 +48,7 @@ func update_tower_preview():
 	var current_tile = map_node.get_node("TowerExclusion").local_to_map(mouse_position)
 	var tile_position = map_node.get_node("TowerExclusion").map_to_local(current_tile)
 
-	if map_node.get_node("TowerExclusion").get_cell_source_id(0, current_tile) == -1:
+	if map_node.get_node("TowerExclusion").get_cell_source_id(current_tile) == -1:
 		get_node("UI").update_tower_preview(tile_position, "4287f5")
 		build_valid = true
 		build_location = tile_position
@@ -71,7 +71,7 @@ func verify_and_build():
 		new_tower.type = str(build_type)
 		new_tower.category = GameData.tower_data[build_type]["category"]
 		map_node.get_node("Turrets").add_child(new_tower, true)
-		map_node.get_node("TowerExclusion").set_cell(0, build_tile, 5, Vector2(1,0))
+		map_node.get_node("TowerExclusion").set_cell(build_tile, 5, Vector2i(1,0))
 
 ## Wave Functions
 
