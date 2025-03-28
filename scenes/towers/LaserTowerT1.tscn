@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cypefcl8r0h2n"]
+[gd_scene load_steps=11 format=3 uid="uid://cypefcl8r0h2n"]
 
 [ext_resource type="Script" uid="uid://jc80857p2vc8" path="res://scenes/towers/LaserTowerT1.gd" id="1_b77wc"]
 [ext_resource type="Texture2D" uid="uid://bfqgamfi8yue" path="res://assets/towers/tower_base.png" id="2_jyjtp"]
@@ -8,6 +8,17 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_34075"]
 radius = 30.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vd3sc"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 5, 1)
+spread = 55.843
+initial_velocity_min = 15.38
+initial_velocity_max = 46.15
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 10.0
+color = Color(0.219501, 0.219501, 0.219501, 0.431373)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sk6ug"]
 
@@ -102,6 +113,14 @@ color = Color(1, 0, 0.0166664, 1)
 energy = 0.0
 texture = ExtResource("5_eexdw")
 
+[node name="BarrelSmoke" type="GPUParticles2D" parent="Gun/Marker2D"]
+position = Vector2(36, 0)
+emitting = false
+amount = 18
+speed_scale = 0.65
+randomness = 0.16
+process_material = SubResource("ParticleProcessMaterial_vd3sc")
+
 [node name="Range" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
@@ -109,7 +128,7 @@ shape = SubResource("CircleShape2D_sk6ug")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_uhfkk")
+&"": SubResource("AnimationLibrary_uhfkk")
 }
 speed_scale = 1.674
 
