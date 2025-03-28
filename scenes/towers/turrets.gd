@@ -17,6 +17,7 @@ func _ready():
 		magazine_max = GameData.tower_data[type]["magazine_count"]
 		magazine_current = magazine_max
 		self.get_node("Range/CollisionShape2D").get_shape().radius = 0.5 * GameData.tower_data[type]["range"]
+		get_node("Gun/Marker2D/BarrelSmoke").set_emitting(false)
 
 
 
@@ -69,9 +70,11 @@ func fire_missle():
 
 func reload_timer():
 	cooldown = true
+	get_node("Gun/Marker2D/BarrelSmoke").set_emitting(true)
 	await get_tree().create_timer(GameData.tower_data[type]["reload_timer"]).timeout
 	cooldown = false
 	magazine_current = magazine_max
+	get_node("Gun/Marker2D/BarrelSmoke").set_emitting(false)
 
 
 ##TARGET ARR
